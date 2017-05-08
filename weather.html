@@ -2,10 +2,12 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system@1.0.x/dist/aframe-particle-system-component.min.js"></script>
     <meta charset="utf-8">
     <title>Playing With API's</title>
   </head>
   <body>
+
     <!-- <h1> Weather</h1>
     <button id="getWeather">Get Da Weather</button>
     <p>Where do YOU live (not creepy or anything)<input type="text" id="location"><br></p>
@@ -22,7 +24,10 @@
       </a-entity>
       <a-sky color="#007fff"></a-sky>
       <a-entity id = "temperatureDisplay"></a-entity>
+      <a-entity id = "locationDisplay"></a-entity>
       <a-plane src="#groundTexture" rotation="-90 0 0" width="100" height="100"></a-plane>
+      <a-entity particle-system="preset: snow; particleCount: 10000"></a-entity>
+     <a-entity particle-system="preset: default; color: #515; particleCount: 1000" position="0 0 -5"></a-entity>
     </a-scene>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"> </script>
