@@ -1,0 +1,22 @@
+{
+  "name": "apiexperimenting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "3dforecast.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LemonChopper/3D-Weather.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LemonChopper/3D-Weather/issues"
+  },
+  "homepage": "https://github.com/LemonChopper/3D-Weather#readme",
+  "dependencies": {
+    "aframe-particle-system-component": "^1.0.9"
+  }
+}

@@ -1,10 +1,12 @@
 var color = "#0500ff"
-var place = "Miami"
-var myUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q={" + place + "}&cnt=7&mode=json&units=imperial&appid=f052497bd343eaf43714ad0afe195a51"
+var place = "New York"
 
 $(document).ready(function(){
-  $.ajax({url: myUrl, success: function(result){
+  place = window.location.search.replace("?location=", "")
+  place = place.replace("+", " ").replace("%2C", ",").replace("+", " ")
+  var myUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q={" + place + "}&cnt=7&mode=json&units=imperial&appid=f052497bd343eaf43714ad0afe195a51"
 
+  $.ajax({url: myUrl, success: function(result){
     var forecast = result.list
     console.log(forecast)
 
@@ -16,8 +18,9 @@ $(document).ready(function(){
       date = new Date(forecast[i].dt)
       color = hexTempColors[Math.floor(Math.floor(temp)/2 - 12)]
         $('#temperature').append('<a-sphere color="' + color + '" radius="5" fog="true" scale="0.2 0.2 0.2" position="'+ i*3 + ' 1 -3"></a-sphere>')
-        $('#temperatureDisplay').append("<a-entity text='value: " + convertTimestamp(date) + ": " + temp + "F' anchor= 'center' material='color: red' position='" + ((i*3) + 0.5) + " 2.5 -3' scale='5 5 5'></a-entity>")
+        $('#temperatureDisplay').append("<a-entity text='align:center; value: " + convertTimestamp(date) + ": " + temp + "F' anchor= 'center' material='color: red' position='" + ((i*3)) + " 2.5 -3' scale='7 7 7'></a-entity>")
     }
+    $('#locationDisplay').append("<a-entity text='align:center; color: #ff8c00; value: " + place + "' position='9 4 -7' scale='50 50 50'></a-entity>")
 
   }})
 
@@ -25,6 +28,7 @@ $(document).ready(function(){
 
 
 function convertTimestamp(timestamp) {
+
   var d = new Date(timestamp * 1000),	// Convert the passed timestamp to milliseconds
 		yyyy = d.getFullYear(),
 		mm = ('0' + (d.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
@@ -33,7 +37,9 @@ function convertTimestamp(timestamp) {
 		h = hh,
 		min = ('0' + d.getMinutes()).slice(-2),		// Add leading 0.
 		ampm = 'AM',
-		time;
+		time,
+    weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    currentDay = weekdays[d.getDay()];
 
 	if (hh > 12) {
 		h = hh - 12;
@@ -48,5 +54,5 @@ function convertTimestamp(timestamp) {
 	// ie: 2013-02-18, 8:35 AM
 	time = yyyy + '-' + mm + '-' + dd;
 
-	return time;
+	return currentDay;
 }

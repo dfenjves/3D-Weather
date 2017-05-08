@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+     <script src="https://unpkg.com/aframe-particle-system@1.0.x/dist/aframe-particle-system-component.min.js"></script>
     <meta charset="utf-8">
     <title>Playing With API's</title>
   </head>
@@ -20,8 +21,10 @@
       <a-entity position="10 2 7">
         <a-camera></a-camera>
       </a-entity>
+      <a-entity position="0 2.25 -15" particle-system="color: #EF0000,#44CC00"></a-entity>
       <a-sky color="#007fff"></a-sky>
       <a-entity id = "temperatureDisplay"></a-entity>
+      <a-entity id = "locationDisplay"></a-entity>
       <a-plane src="#groundTexture" rotation="-90 0 0" width="100" height="100"></a-plane>
     </a-scene>
 
