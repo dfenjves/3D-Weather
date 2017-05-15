@@ -1,5 +1,6 @@
 var color = "#0500ff"
 var place = "New York"
+var isRaining = false
 
 $(document).ready(function(){
   place = window.location.search.replace("?location=", "")
@@ -8,10 +9,12 @@ $(document).ready(function(){
 
   $.ajax({url: myUrl, success: function(result){
     var forecast = result.list
-    console.log(forecast)
+    console.log(forecast[0].weather[0].main)
+
+    if(forecast[0].weather[0].main == "Rain"){$('#temperature').append('<a-scene rain>')}
+    // else if(forecast[0].weather[0].main == "Snow"){}
 
     var hexTempColors = ["#0500ff", "#0400ff", "#0300ff", "#0200ff", "#0100ff", "#0002ff", "#0012ff", "#0022ff", "#0032ff", "#0044ff", "#0054ff", "#0064ff", "#0074ff", "#0084ff", "#0094ff", "#00a4ff", "#00b4ff", "#00c4ff", "#00d4ff", "#00e4ff", "#00fff4", "#00ffd0", "#00ffa8", "#00ff83", "#00ff5c", "#00ff36", "#00ff10", "#17ff00", "#3eff00", "#65ff00", "#8aff00", "#b0ff00", "#d7ff00", "#fdff00", "#FFfa00", "#FFf000", "#FFe600", "#FFdc00", "#FFd200", "#FFc800", "#FFbe00", "#FFb400", "#FFaa00", "#FFa000", "#FF9600", "#FF8c00", "#FF8200", "#FF7800", "#FF6e00", "#FF6400", "#FF5a00", "#FF5000", "#FF4600", "#FF3c00", "#FF3200", "#FF2800", "#FF1e00", "#FF1400", "#FF0000", "#FF0010", "#FF0020", "#FF0030", "#FF0040", "#FF0050", "#FF0060", "#FF0070", "#FF0080", "#FF0090"];
-
     for (var i = 0; i < forecast.length; i++) {
 
       temp = forecast[i].temp.day
